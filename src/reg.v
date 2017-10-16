@@ -61,7 +61,6 @@ module FlagRegister(CLK, CLR, Carry, Out);
     if (CLR == 1'b0)
       Out <= 1'b0;
     else
-      // Negative logic
-      Out <= ~Carry;
+      Out <= Carry;
   end
 endmodule
