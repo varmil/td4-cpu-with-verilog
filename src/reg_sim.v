@@ -1,4 +1,4 @@
-module td4_sim;
+module reg_sim;
   reg CLK, CLR, EN, LOAD;
   reg [3:0] Im;
   wire [3:0] Out;
