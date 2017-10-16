@@ -32,7 +32,7 @@ module BRegister(CLK, CLR, EN, LOAD, Im, Out);
 
   output reg [3:0] Out;
 
-  always @ (posedge CLK, negedge CLR, LOAD, Im) begin
+  always @ (posedge CLK or negedge CLR) begin
     if (CLR == 1'b0)
       Out <= 4'b0000;
     else
@@ -56,7 +56,7 @@ module PC(CLK, CLR, EN, LOAD, Im, Out);
 
   output reg [3:0] Out;
 
-  always @ (posedge CLK, negedge CLR, LOAD, Im) begin
+  always @ (posedge CLK or negedge CLR) begin
     if (CLR == 1'b0)
       Out <= 4'b0000;
     else
