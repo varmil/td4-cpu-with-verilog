@@ -13,7 +13,11 @@ module td4(CLK, CLR);
   wire [7:0] Order;
 
   // Decoder
-  wire SELECTA, SELECTB;
+  wire [1:0] SELECT;
+
+  // Data Selector
+  wire [3:0] InPort;
+  wire [3:0] OutDataSelector;
 
   // Carry
   wire Carry, CarryOut;
@@ -22,7 +26,10 @@ module td4(CLK, CLR);
   ROM ROM(Address, Order);
 
   // Decoder
-  Decoder Decoder(Order[7:4], CarryOut, LOAD, SELECTA, SELECTB);
+  Decoder Decoder(Order[7:4], CarryOut, LOAD, SELECT);
+
+  // Data Selector
+  DataSelector DataSelector(OutA, OutB, InPort, SELECT, OutDataSelector);
 
   // register
   GPRegister ARegister(CLK, CLR, EN, LOAD[0], Im, OutA);
