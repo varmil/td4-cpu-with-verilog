@@ -1,3 +1,5 @@
+// NOTE: if Im is XXXX when LOAD is Low, Out may be XXXX
+
 /* A register */
 module ARegister(CLK, CLR, EN, LOAD, Im, Out);
   input CLK, CLR, EN, LOAD;
