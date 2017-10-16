@@ -25,7 +25,7 @@ module ROM(In, Out);
       4'b1100: SelectOrder = 8'b0000_0001; // add 0001
       4'b1101: SelectOrder = 8'b1110_1010; // jnc 1010
       4'b1110: SelectOrder = 8'b1011_1000; // out 0000
-      4'b1111: SelectOrder = 8'b1111_1111; // jmp 1111      
+      4'b1111: SelectOrder = 8'b1111_1111; // jmp 1111
       default: SelectOrder = 8'b0000_0000;
     endcase
   endfunction
