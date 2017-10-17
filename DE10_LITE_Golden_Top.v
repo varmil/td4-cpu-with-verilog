@@ -125,16 +125,32 @@ module DE10_LITE_Golden_Top(
 
 //=======================================================
 //  REG/WIRE declarations
-//=======================================================
-	assign HEX0 = 8'b0000_0000;
-	assign HEX1 = 8'b0000_0111;
-
+//=======================================================	
+	parameter DIVIDE = 23'd1666666;
+	reg [22:0] tmp_count;
+	reg ff;
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
-	td4 td4(KEY[0], SW[9], SW[3:0], LEDR[3:0]);
+	assign HEX0 = 8'b1111_1111;
+	assign HEX1 = 8'b0000_0111;
+
+	always @(posedge ADC_CLK_10, negedge SW[9]) begin
+		if (SW[9] == 1'b0) begin
+			tmp_count <= 0;
+			ff <= 0;
+		end
+		else if (tmp_count == DIVIDE) begin
+			tmp_count <= 0;
+			ff <= ~ff;
+		end
+		else
+			tmp_count <= tmp_count + 23'd1;
+	end
+
+	td4 td4(ff, SW[9], SW[3:0], LEDR[3:0]);
 
 
 endmodule
