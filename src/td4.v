@@ -1,6 +1,7 @@
 module td4(CLK, CLR, IN, OUT);
   input CLK, CLR;
-  input [3:0] IN, OUT;
+  input [3:0] IN;
+  output [3:0] OUT;
 
   // Register
   wire CLK, CLR, EN;
