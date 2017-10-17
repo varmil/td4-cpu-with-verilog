@@ -57,7 +57,8 @@ module FlagRegister(CLK, CLR, Carry, Out);
 
   output reg Out;
 
-  always @ ( * ) begin
+  // NOTE: always @ ( * ) はCarryも含まれてしまうので正しく動作しない（非同期にしないといけない）
+  always @ (posedge CLK or negedge CLR) begin
     if (CLR == 1'b0)
       Out <= 1'b0;
     else

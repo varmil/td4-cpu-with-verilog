@@ -5,7 +5,6 @@ module td4(CLK, CLR);
   // Register
   wire CLK, CLR, EN;
   wire [3:0] LOAD;
-  wire [3:0] Im;
   wire [3:0] OutA, OutB, OutLED;
 
   // Rom
@@ -18,6 +17,9 @@ module td4(CLK, CLR);
   // Data Selector
   wire [3:0] InPort;
   wire [3:0] OutDataSelector;
+
+  // ALU
+  wire [3:0] OutALU;
 
   // Carry
   wire Carry, CarryOut;
@@ -32,11 +34,12 @@ module td4(CLK, CLR);
   DataSelector DataSelector(OutA, OutB, InPort, SELECT, OutDataSelector);
 
   // ALU
+  ALU ALU(OutDataSelector, Order[3:0], OutALU, Carry);
 
   // register
-  GPRegister ARegister(CLK, CLR, EN, LOAD[0], Im, OutA);
-  GPRegister BRegister(CLK, CLR, EN, LOAD[1], Im, OutB);
-  GPRegister OutPortRegister(CLK, CLR, EN, LOAD[2], Im, OutLED);
-  PC PC(CLK, CLR, EN, LOAD[3], Im, Address);
+  GPRegister ARegister(CLK, CLR, EN, LOAD[0], OutALU, OutA);
+  GPRegister BRegister(CLK, CLR, EN, LOAD[1], OutALU, OutB);
+  GPRegister OutPortRegister(CLK, CLR, EN, LOAD[2], OutALU, OutLED);
+  PC PC(CLK, CLR, EN, LOAD[3], OutALU, Address);
   FlagRegister FlagRegister(CLK, CLR, Carry, CarryOut);
 endmodule

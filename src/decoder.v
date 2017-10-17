@@ -15,7 +15,7 @@ module Decoder(Operation, Carry, LOAD, SELECT);
   assign LOAD[0] = (Operation[2] | Operation[3]);
   assign LOAD[1] = (~Operation[2] | Operation[3]);
   assign LOAD[2] = ~(~Operation[2] & Operation[3]);
-  assign LOAD[3] = (~Operation[2] | ~Operation[3] | (Operation[0] & Carry));
+  assign LOAD[3] = (~Operation[2] | ~Operation[3] | (~Operation[0] & Carry));
 
   assign SELECT[0] = (Operation[0] | Operation[3]);
   assign SELECT[1] = (Operation[1]);

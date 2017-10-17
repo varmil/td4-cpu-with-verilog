@@ -9,7 +9,7 @@ module td4_sim;
     CLK  = 0;
     CLR  = 0;
     #23  CLR = 1;
-    #200 $finish;
+    #2000 $finish;
   end
 
   initial begin
