@@ -31,6 +31,8 @@ module td4(CLK, CLR);
   // Data Selector
   DataSelector DataSelector(OutA, OutB, InPort, SELECT, OutDataSelector);
 
+  // ALU
+
   // register
   GPRegister ARegister(CLK, CLR, EN, LOAD[0], Im, OutA);
   GPRegister BRegister(CLK, CLR, EN, LOAD[1], Im, OutB);
